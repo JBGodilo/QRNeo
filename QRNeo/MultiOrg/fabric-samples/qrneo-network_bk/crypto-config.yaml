@@ -1,0 +1,21 @@
+OrdererOrgs:
+  - Name: OrderingService
+    Domain: qrneo-network.com
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  - Name: Taguig
+    Domain: taguig.qrneo-network.com
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users: 
+      Count: 1
+  - Name: Magsaysay
+    Domain: magsaysay.qrneo-network.com
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+    Users: 
+      Count: 1

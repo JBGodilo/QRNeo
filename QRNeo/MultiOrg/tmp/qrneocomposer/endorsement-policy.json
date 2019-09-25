@@ -1,0 +1,26 @@
+{
+    "identities": [
+        {
+            "role": {
+                "name": "member",
+                "mspId": "TaguigMSP"
+            }
+        },
+        {
+            "role": {
+                "name": "member",
+                "mspId": "MagsaysayMSP"
+            }
+        }
+    ],
+    "policy": {
+        "2-of": [
+            {
+                "signed-by": 0
+            },
+            {
+                "signed-by": 1
+            }
+        ]
+    }
+}

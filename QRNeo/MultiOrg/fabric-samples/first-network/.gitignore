@@ -1,0 +1,8 @@
+/channel-artifacts/*.tx
+/channel-artifacts/*.block
+/crypto-config/*
+/docker-compose-e2e.yaml
+/docker-compose-cas.yaml
+/docker-compose-ca3.yaml
+/ledgers
+/ledgers-backup

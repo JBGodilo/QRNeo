@@ -1,0 +1,85 @@
+# Organizations
+
+Organizations:
+
+  - &OrdererOrg
+    Name: OrderingService
+    ID: OrdererMSP
+    MSPDir: crypto-config/ordererOrganizations/qrneo-network.com/msp
+
+  - &Taguig
+    Name: TaguigMSP
+    ID: TaguigMSP
+    MSPDir: crypto-config/peerOrganizations/taguig.qrneo-network.com/msp
+    AnchorPeers:
+      - Host: peer0.taguig.qrneo-network.com
+        Port: 7051
+
+  - &Magsaysay
+    Name: MagsaysayMSP
+    ID: MagsaysayMSP
+    MSPDir: crypto-config/peerOrganizations/magsaysay.qrneo-network.com/msp
+    AnchorPeers:
+      - Host: peer0.magsaysay.qrneo-network.com
+        Port: 7051
+
+# Application
+
+Application: &ApplicationDefaults
+
+  Organizations:
+
+# Capabilities
+
+Capabilities:
+    Global: &ChannelCapabilities
+        V1_1: true
+    Orderer: &OrdererCapabilities
+        V1_1: true
+    Application: &ApplicationCapabilities
+        V1_1: true
+        
+# Orderer
+
+Orderer: &OrdererDefaults
+
+  OrdererType: solo
+  Addresses: 
+    - orderer.qrneo-network.com:7050
+  BatchTimeout: 2s
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+  Kafka:
+    Brokers: 
+      - 127.0.0.1:9092
+
+  Organizations:
+
+# Profiles
+
+Profiles:
+    OrdererGenesis:
+      Capabilities:
+        <<: *ChannelCapabilities
+      Orderer:
+        <<: *OrdererDefaults
+        Organizations:
+          - *OrdererOrg
+        Capabilities:
+          <<: *OrdererCapabilities
+      Consortiums:
+        MyFirstConsortium:
+          Organizations:
+            - *Taguig
+            - *Magsaysay
+    channeltwoorgs:
+      Consortium: MyFirstConsortium
+      Application:
+        <<: *ApplicationDefaults
+        Organizations:
+          - *Taguig
+          - *Magsaysay
+        Capabilities:
+          <<: *ApplicationCapabilities

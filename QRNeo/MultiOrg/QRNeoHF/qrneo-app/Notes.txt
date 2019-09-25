@@ -1,0 +1,36 @@
+VM1
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/. qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/QRNeoHF/
+scp -r qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/QRNeoHF/. D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/docker-compose-orderer.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/QRNeoHF/docker-compose-orderer.yaml
+
+VM2
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/channel-artifacts/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-network/channel-artifacts/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/crypto-config/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-network/crypto-config/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/scripts/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-network/scripts/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/bin/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-network/bin/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/chaincode/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-network/chaincode/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/docker-compose-org1.yaml qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-network/docker-compose-org1.yaml
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-app/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-app/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/myapp/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/myapp/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/crypto-config/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/myapp/crypto-config/
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qhfn.sh qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qhfn.sh
+docker swarm join --token SWMTKN-1-4do5qlcv0zxeem5xsmkys4weqyczbn99qqu9d4e0a56fmmqv43-13oydjg6dfdwhkrsmmin3ltln 172.16.1.5:2377 --advertise-addr 172.16.1.7
+
+javascripts
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-app/enrollAdmin.js qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-app/enrollAdmin.js
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-app/registerUser.js qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/QRNeoHF/qrneo-app/registerUser.js
+
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-app/enrollAdmin.js qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/QRNeoHF/qrneo-app/enrollAdmin.js
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-app/registerUser.js qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/QRNeoHF/qrneo-app/registerUser.js
+
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-app/. qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/QRNeoHF/qrneo-app/
+
+VM3
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/channel-artifacts/. qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/QRNeoHF/qrneo-network/channel-artifacts/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/crypto-config/. qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/QRNeoHF/qrneo-network/crypto-config/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/scripts/. qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/QRNeoHF/qrneo-network/scripts/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/bin/. qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/QRNeoHF/qrneo-network/bin/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/chaincode/. qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/QRNeoHF/qrneo-network/chaincode/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/docker-compose-org2.yaml qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/QRNeoHF/qrneo-network/docker-compose-org2.yaml
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/QRNeoHF/qrneo-network/qhfn.sh qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/QRNeoHF/qrneo-network/qhfn.sh
+docker swarm join --token SWMTKN-1-4do5qlcv0zxeem5xsmkys4weqyczbn99qqu9d4e0a56fmmqv43-13oydjg6dfdwhkrsmmin3ltln 172.16.1.5:2377 --advertise-addr 172.16.1.8

@@ -1,0 +1,134 @@
+{
+    "name": "byfn-network",
+    "x-type": "hlfv1",
+    "version": "1.0.0",
+	"client": {
+        "organization": "Magsaysay",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300",
+                    "eventHub": "300",
+                    "eventReg": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "channels": {
+        "mychannel": {
+            "orderers": [
+                "orderer.qrneo-network.com"
+            ],
+            "peers": {
+                "peer0.taguig.qrneo-network.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer1.taguig.qrneo-network.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer0.magsaysay.qrneo-network.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer1.magsaysay.qrneo-network.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Taguig": {
+            "mspid": "TaguigMSP",
+            "peers": [
+                "peer0.taguig.qrneo-network.com",
+                "peer1.taguig.qrneo-network.com"
+            ],
+            "certificateAuthorities": [
+                "ca.taguig.qrneo-network.com"
+            ]
+        },
+        "Magsaysay": {
+            "mspid": "MagsaysayMSP",
+            "peers": [
+                "peer0.magsaysay.qrneo-network.com",
+                "peer1.magsaysay.qrneo-network.com"
+            ],
+            "certificateAuthorities": [
+                "ca.magsaysay.qrneo-network.com"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.qrneo-network.com": {
+            "url": "grpcs://localhost:7050",
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer.qrneo-network.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICTTCCAfSgAwIBAgIRAPEbX33aFlhcLMtMWauXTBEwCgYIKoZIzj0EAwIweDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xGjAYBgNVBAoTEXFybmVvLW5ldHdvcmsuY29tMSAwHgYDVQQDExd0\nbHNjYS5xcm5lby1uZXR3b3JrLmNvbTAeFw0xODA5MDUwMjU2MzdaFw0yODA5MDIw\nMjU2MzdaMHgxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYD\nVQQHEw1TYW4gRnJhbmNpc2NvMRowGAYDVQQKExFxcm5lby1uZXR3b3JrLmNvbTEg\nMB4GA1UEAxMXdGxzY2EucXJuZW8tbmV0d29yay5jb20wWTATBgcqhkjOPQIBBggq\nhkjOPQMBBwNCAAS7SGdeJSEJvy2jM7gX3i6tpeR+g01KYocMPMtwQ6Lk7TTbuavP\nZDr94Jil0EkXtvJpYl1rCDjpsAFPv8RQkPU5o18wXTAOBgNVHQ8BAf8EBAMCAaYw\nDwYDVR0lBAgwBgYEVR0lADAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCD0/c/b\nBsOq9yoSxtFMR7tUXl8EIFkOgQgI13L7InSMXjAKBggqhkjOPQQDAgNHADBEAiBu\ncVQghFuEFlw09Kzuf8jlfhofu6BssprulN/8IImrNwIgPBSms5Qs1ZbA9cizFr0w\njg8bDKhgSbqFcPiKHknD54g=\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "peers": {
+        "peer0.taguig.qrneo-network.com": {
+            "url": "grpcs://localhost:7051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.taguig.qrneo-network.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICajCCAhGgAwIBAgIQHRQ3JFC2wRVIeApc0Hfi/TAKBggqhkjOPQQDAjCBhjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xITAfBgNVBAoTGHRhZ3VpZy5xcm5lby1uZXR3b3JrLmNvbTEnMCUG\nA1UEAxMedGxzY2EudGFndWlnLnFybmVvLW5ldHdvcmsuY29tMB4XDTE4MDkwNTAy\nNTYzN1oXDTI4MDkwMjAyNTYzN1owgYYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpD\nYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMSEwHwYDVQQKExh0YWd1\naWcucXJuZW8tbmV0d29yay5jb20xJzAlBgNVBAMTHnRsc2NhLnRhZ3VpZy5xcm5l\nby1uZXR3b3JrLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABG8Hy1AgRBDP\nX6gs0r0FVRhOyn7LSmJ2PYHiSDnFd/+TuMN+1Qm30X3UDRO1mkZwncHPhAlz6ZiF\n9xCDcc3N/6ujXzBdMA4GA1UdDwEB/wQEAwIBpjAPBgNVHSUECDAGBgRVHSUAMA8G\nA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIJUHG7mWDmirc3zxVSWGGCgwmNwTnotp\nnDjqlscrGFFBMAoGCCqGSM49BAMCA0cAMEQCIAqQlQbdGSvesEazxM9U8B1snCrY\nf5+pBV3TKXrI2hBiAiAoGyCkNMgy5Jv61fgwjc4s8A8w5d8evvP+TkceaSq/jQ==\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "peer1.taguig.qrneo-network.com": {
+            "url": "grpcs://localhost:8051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.taguig.qrneo-network.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICajCCAhGgAwIBAgIQHRQ3JFC2wRVIeApc0Hfi/TAKBggqhkjOPQQDAjCBhjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xITAfBgNVBAoTGHRhZ3VpZy5xcm5lby1uZXR3b3JrLmNvbTEnMCUG\nA1UEAxMedGxzY2EudGFndWlnLnFybmVvLW5ldHdvcmsuY29tMB4XDTE4MDkwNTAy\nNTYzN1oXDTI4MDkwMjAyNTYzN1owgYYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpD\nYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMSEwHwYDVQQKExh0YWd1\naWcucXJuZW8tbmV0d29yay5jb20xJzAlBgNVBAMTHnRsc2NhLnRhZ3VpZy5xcm5l\nby1uZXR3b3JrLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABG8Hy1AgRBDP\nX6gs0r0FVRhOyn7LSmJ2PYHiSDnFd/+TuMN+1Qm30X3UDRO1mkZwncHPhAlz6ZiF\n9xCDcc3N/6ujXzBdMA4GA1UdDwEB/wQEAwIBpjAPBgNVHSUECDAGBgRVHSUAMA8G\nA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIJUHG7mWDmirc3zxVSWGGCgwmNwTnotp\nnDjqlscrGFFBMAoGCCqGSM49BAMCA0cAMEQCIAqQlQbdGSvesEazxM9U8B1snCrY\nf5+pBV3TKXrI2hBiAiAoGyCkNMgy5Jv61fgwjc4s8A8w5d8evvP+TkceaSq/jQ==\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "peer0.magsaysay.qrneo-network.com": {
+            "url": "grpcs://localhost:9051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.magsaysay.qrneo-network.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICeDCCAh6gAwIBAgIRAIC+oPzIPAbafIP6MfaK7rQwCgYIKoZIzj0EAwIwgYwx\nCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4g\nRnJhbmNpc2NvMSQwIgYDVQQKExttYWdzYXlzYXkucXJuZW8tbmV0d29yay5jb20x\nKjAoBgNVBAMTIXRsc2NhLm1hZ3NheXNheS5xcm5lby1uZXR3b3JrLmNvbTAeFw0x\nODA5MDUwMjU2MzdaFw0yODA5MDIwMjU2MzdaMIGMMQswCQYDVQQGEwJVUzETMBEG\nA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEkMCIGA1UE\nChMbbWFnc2F5c2F5LnFybmVvLW5ldHdvcmsuY29tMSowKAYDVQQDEyF0bHNjYS5t\nYWdzYXlzYXkucXJuZW8tbmV0d29yay5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMB\nBwNCAAQhr8BR3afIRK2C8gHSt6cQmh2KEGX5RVWfc8xLXQBItz7G+YTcXjqRJUz1\nqnJPBtgmJnMk0Q3Hihqyy2HiCrhko18wXTAOBgNVHQ8BAf8EBAMCAaYwDwYDVR0l\nBAgwBgYEVR0lADAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDCWxz5f/+oqYyl\nS7bjUaqOgEUqPRNkFfowwZSG93zL1zAKBggqhkjOPQQDAgNIADBFAiEAu8I0mXlN\nwsl6mmy2EYqsnMg2nRj6pUh13Jo/Y5YSoNwCIEjsEfO6xCLA57Zie7oDrwRj6N56\nNVp3GKoqbhkpeDjC\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "peer1.magsaysay.qrneo-network.com": {
+            "url": "grpcs://localhost:10051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.magsaysay.qrneo-network.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICeDCCAh6gAwIBAgIRAIC+oPzIPAbafIP6MfaK7rQwCgYIKoZIzj0EAwIwgYwx\nCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4g\nRnJhbmNpc2NvMSQwIgYDVQQKExttYWdzYXlzYXkucXJuZW8tbmV0d29yay5jb20x\nKjAoBgNVBAMTIXRsc2NhLm1hZ3NheXNheS5xcm5lby1uZXR3b3JrLmNvbTAeFw0x\nODA5MDUwMjU2MzdaFw0yODA5MDIwMjU2MzdaMIGMMQswCQYDVQQGEwJVUzETMBEG\nA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEkMCIGA1UE\nChMbbWFnc2F5c2F5LnFybmVvLW5ldHdvcmsuY29tMSowKAYDVQQDEyF0bHNjYS5t\nYWdzYXlzYXkucXJuZW8tbmV0d29yay5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMB\nBwNCAAQhr8BR3afIRK2C8gHSt6cQmh2KEGX5RVWfc8xLXQBItz7G+YTcXjqRJUz1\nqnJPBtgmJnMk0Q3Hihqyy2HiCrhko18wXTAOBgNVHQ8BAf8EBAMCAaYwDwYDVR0l\nBAgwBgYEVR0lADAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCDCWxz5f/+oqYyl\nS7bjUaqOgEUqPRNkFfowwZSG93zL1zAKBggqhkjOPQQDAgNIADBFAiEAu8I0mXlN\nwsl6mmy2EYqsnMg2nRj6pUh13Jo/Y5YSoNwCIEjsEfO6xCLA57Zie7oDrwRj6N56\nNVp3GKoqbhkpeDjC\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.taguig.qrneo-network.com": {
+            "url": "https://localhost:7054",
+            "caName": "ca-taguig",
+            "httpOptions": {
+                "verify": false
+            }
+        },
+        "ca.magsaysay.qrneo-network.com": {
+            "url": "https://localhost:8054",
+            "caName": "ca-magsaysay",
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

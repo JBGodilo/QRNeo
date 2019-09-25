@@ -1,0 +1,177 @@
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/first-network/trade-network.bna qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-dev-servers/fabric-samples/first-network/trade-network.bna
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/composer/byfn-network.json qrpdevmachine3@13.76.156.155:/tmp/composer/byfn-network.json
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/composer/org1/byfn-network-org1.json qrpdevmachine3@13.76.156.155:/tmp/composer/org1/byfn-network-org1.json
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/composer/org2/byfn-network-org2.json qrpdevmachine3@13.76.156.155:/tmp/composer/org2/byfn-network-org2.json
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/composer/endorsement-policy.json qrpdevmachine3@13.76.156.155:/tmp/composer/endorsement-policy.json
+
+scp qrpdevmachine3@13.76.156.155:/tmp/composer/org1/ca-org1.txt D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/composer/org1/ca-org1.txt
+scp qrpdevmachine3@13.76.156.155:/tmp/composer/org2/ca-org2.txt D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/composer/org2/ca-org2.txt
+scp qrpdevmachine3@13.76.156.155:/tmp/composer/ca-orderer.txt D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/composer/ca-orderer.txt
+
+scp qrneohfdev@qrneohfdev.southeastasia.cloudapp.azure.com:/home/qrneohfdev/qrneo-network/idregistrar01.card C:/Users/jgodilo/Desktop/IssuedCardVIACLI/idregistrar01.card
+scp qrneohfdev@qrneohfdev.southeastasia.cloudapp.azure.com:/home/qrneohfdev/qrneo-network/SA001.card C:/Users/jgodilo/Desktop/IssuedCardVIACLI/SA001.card
+
+
+composer network start -c PeerAdmin@byfn-network-org1 -n trade-network -V 0.2.15-deploy.0 -o endorsementPolicyFile=/tmp/composer/endorsement-policy.json -A alice -C alice/admin-pub.pem -A bob -C bob/admin-pub.pem
+
+QRNEO Network
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/crypto-config.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/crypto-config.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/configtx.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/configtx.yaml
+
+../bin/configtxgen -profile channeltwoorgs -outputCreateChannelTx ./channel-artifacts/channel.tx -channelID qrneochannel
+../bin/configtxgen -profile channeltwoorgs -outputAnchorPeersUpdate ./channel-artifacts/TaguigAnchor.tx -channelID qrneochannel -asOrg TaguigMSP
+../bin/configtxgen -profile channeltwoorgs -outputAnchorPeersUpdate ./channel-artifacts/MagsaysayAnchor.tx -channelID qrneochannel -asOrg MagsaysayMSP
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/base/peer-base.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/base/peer-base.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/base/docker-compose-base.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/base/docker-compose-base.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-cli.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/docker-compose-cli.yaml
+
+Get Org Certificates
+awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' crypto-config/peerOrganizations/taguig.qrneo-network.com/peers/peer0.taguig.qrneo-network.com/tls/ca.crt > /tmp/qrneocomposer/taguig/ca-taguig.txt
+scp qrpdevmachine3@13.76.156.155:/tmp/qrneocomposer/taguig/ca-taguig.txt D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/qrneocomposer/taguig/ca-taguig.txt
+
+awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' crypto-config/peerOrganizations/magsaysay.qrneo-network.com/peers/peer0.magsaysay.qrneo-network.com/tls/ca.crt > /tmp/qrneocomposer/magsaysay/ca-magsaysay.txt
+scp qrpdevmachine3@13.76.156.155:/tmp/qrneocomposer/magsaysay/ca-magsaysay.txt D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/qrneocomposer/magsaysay/ca-magsaysay.txt
+
+awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' crypto-config/ordererOrganizations/qrneo-network.com/orderers/orderer.qrneo-network.com/tls/ca.crt > /tmp/qrneocomposer/ca-orderer.txt
+scp qrpdevmachine3@13.76.156.155:/tmp/qrneocomposer/ca-orderer.txt D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/qrneocomposer/ca-orderer.txt
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/qrneocomposer/qrneo-network.json qrpdevmachine3@13.76.156.155:/tmp/qrneocomposer/qrneo-network.json
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/qrneocomposer/taguig/qrneo-network-taguig.json qrpdevmachine3@13.76.156.155:/tmp/qrneocomposer/taguig/qrneo-network-taguig.json
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/qrneocomposer/magsaysay/qrneo-network-magsaysay.json qrpdevmachine3@13.76.156.155:/tmp/qrneocomposer/magsaysay/qrneo-network-magsaysay.json
+
+Locating the certificate and private key for the Hyperledger Fabric administrator for each organizations
+export TAGUIG=crypto-config/peerOrganizations/taguig.qrneo-network.com/users/Admin@taguig.qrneo-network.com/msp
+cp -p $TAGUIG/signcerts/A*.pem /tmp/qrneocomposer/taguig
+cp -p $TAGUIG/keystore/*_sk /tmp/qrneocomposer/taguig
+
+export MAGSAYSAY=crypto-config/peerOrganizations/magsaysay.qrneo-network.com/users/Admin@magsaysay.qrneo-network.com/msp
+cp -p $MAGSAYSAY/signcerts/A*.pem /tmp/qrneocomposer/magsaysay
+cp -p $MAGSAYSAY/keystore/*_sk /tmp/qrneocomposer/magsaysay
+
+Creating business network cards for the Hyperledger Fabric administrator each organizations
+composer card create -p /tmp/qrneocomposer/taguig/qrneo-network-taguig.json -u PeerAdmin -c /tmp/qrneocomposer/taguig/Admin@taguig.qrneo-network.com-cert.pem -k /tmp/qrneocomposer/taguig/*_sk -r PeerAdmin -r ChannelAdmin -f PeerAdmin@qrneo-network-taguig.card
+composer card create -p /tmp/qrneocomposer/magsaysay/qrneo-network-magsaysay.json -u PeerAdmin -c /tmp/qrneocomposer/magsaysay/Admin@magsaysay.qrneo-network.com-cert.pem -k /tmp/qrneocomposer/magsaysay/*_sk -r PeerAdmin -r ChannelAdmin -f PeerAdmin@qrneo-network-magsaysay.card
+
+Importing the business network cards for the Hyperledger Fabric administrator for each organizations
+composer card import -f PeerAdmin@qrneo-network-taguig.card --card PeerAdmin@qrneo-network-taguig
+composer card import -f PeerAdmin@qrneo-network-magsaysay.card --card PeerAdmin@qrneo-network-magsaysay
+
+Installing the business network onto the Hyperledger Fabric peer nodes for each organizations
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/trade-network.bna qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/trade-network.bna
+composer network install --card PeerAdmin@qrneo-network-taguig --archiveFile trade-network.bna
+composer network install --card PeerAdmin@qrneo-network-magsaysay --archiveFile trade-network.bna
+BNA version: 0.2.15-deploy.0
+
+Defining the endorsement policy for the business network
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/tmp/qrneocomposer/endorsement-policy.json qrpdevmachine3@13.76.156.155:/tmp/qrneocomposer/endorsement-policy.json
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/byfn.sh qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/byfn.sh
+
+Retrieving business network administrator certificates for each organizations
+composer identity request -c PeerAdmin@qrneo-network-taguig -u admin -s adminpw -d taguig-admin
+composer identity request -c PeerAdmin@qrneo-network-magsaysay -u admin -s adminpw -d magsaysay-admin
+
+Start Business Network
+composer network start -c PeerAdmin@qrneo-network-taguig -n trade-network -V 0.2.15-deploy.0 -o endorsementPolicyFile=/tmp/qrneocomposer/endorsement-policy.json -A taguig-admin -C taguig-admin/admin-pub.pem -A magsaysay-admin -C magsaysay-admin/admin-pub.pem
+
+
+
+Creating a business network card to access the business network as Taguig
+composer card create -p /tmp/qrneocomposer/taguig/qrneo-network-taguig.json -u taguig-admin -n trade-network -c taguig-admin/admin-pub.pem -k taguig-admin/admin-priv.pem
+composer card import -f taguig-admin@trade-network.card
+
+Add participant
+composer participant add -c taguig-admin@trade-network -d '{"$class":"org.example.trading.Trader","tradeId":"trader1-org1", "firstName":"Jo","lastName":"Doe"}'
+composer identity issue -c taguig-admin@trade-network -f jo.card -u jdoe -a "resource:org.example.trading.Trader#trader1-org1"
+composer card import -f jo.card
+composer network ping -c jdoe@trade-network
+composer transaction submit --card jdoe@trade-network -d '{"$class": "org.hyperledger.composer.system.AddAsset", "targetRegistry" : "resource:org.hyperledger.composer.system.AssetRegistry#org.example.trading.Commodity", "resources": [{"$class": "org.example.trading.Commodity","tradingSymbol":"EMA", "description":"Corn commodity","mainExchange":"EURONEXT", "quantity":"10","owner":"resource:org.example.trading.Trader#trader1-org1"}]}'
+
+Creating a business network card to access the business network as Magsaysay
+composer card create -p /tmp/qrneocomposer/magsaysay/qrneo-network-magsaysay.json -u magsaysay-admin -n trade-network -c magsaysay-admin/admin-pub.pem -k magsaysay-admin/admin-priv.pem
+composer card import -f magsaysay-admin@trade-network.card
+
+Add Participant
+composer participant add -c magsaysay-admin@trade-network -d '{"$class":"org.example.trading.Trader","tradeId":"trader2-org2", "firstName":"Dave","lastName":"Lowe"}'
+composer identity issue -c magsaysay-admin@trade-network -f dave.card -u dlowe -a "resource:org.example.trading.Trader#trader2-org2"
+composer card import -f dave.card
+composer network ping -c dlowe@trade-network
+composer transaction submit --card dlowe@trade-network -d '{"$class":"org.example.trading.Trade","commodity":"resource:org.example.trading.Commodity#EMA","newOwner":"resource:org.example.trading.Trader#trader2-org2"}'
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/qrneonetwork.sh qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/qrneonetwork.sh
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-cli.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/docker-compose-cli.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/base/docker-compose-base.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/base/docker-compose-base.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/base/peer-base.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/base/peer-base.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-couch.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/docker-compose-couch.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-cas.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/docker-compose-cas.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-ca3.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/docker-compose-ca3.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/scripts/script.sh qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/scripts/script.sh
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/scripts/utils.sh qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/scripts/utils.sh
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/scripts/upgrade_to_v12.sh qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/scripts/upgrade_to_v12.sh
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-e2e-template.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/docker-compose-e2e-template.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-cas-template.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/docker-compose-cas-template.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/crypto-config.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/crypto-config.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/configtx.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/configtx.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/.env qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network-v2/.env
+
+
+
+
+
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/qrneo-networkv2.sh qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/qrneo-networkv2.sh
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-couch.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/docker-compose-couch.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-couch-org3.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/docker-compose-couch-org3.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-e2e-template.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/docker-compose-e2e-template.yaml
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-cli.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/docker-compose-cli.yaml
+
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/scripts/. qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/scripts/
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/scripts/script.sh qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/scripts/script.sh
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-e2e-template.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/docker-compose-e2e-template.yaml
+
+scp qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/first-network/byfn.sh D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/byfn.sh
+
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/fabric-samples/qrneo-network/docker-compose-cas-template.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/qrneo-network/docker-compose-cas-template.yaml
+docker-compose-cas-template.yaml
+
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/composer_running_in_multiple_vm/. qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/composer_running_in_multiple_vm/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/composer_running_in_multiple_vm/composer/. qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/composer_running_in_multiple_vm/composer/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/composer_running_in_multiple_vm/composer/ qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/composer_running_in_multiple_vm/composer/
+
+scp -r qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/Build-Multi-Host-Network-Hyperledger/channel-artifacts/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/Build-Multi-Host-Network-Hyperledger/channel-artifacts/
+scp -r qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/Build-Multi-Host-Network-Hyperledger/channel-artifacts/. D:/Jeson/Projects/Development/QRNeo/MultiOrg/Build-Multi-Host-Network-Hyperledger/channel-artifacts/
+scp -r qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/Build-Multi-Host-Network-Hyperledger/crypto-config/. D:/Jeson/Projects/Development/QRNeo/MultiOrg/Build-Multi-Host-Network-Hyperledger/crypto-config/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Build-Multi-Host-Network-Hyperledger/channel-artifacts/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/Build-Multi-Host-Network-Hyperledger/channel-artifacts/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Build-Multi-Host-Network-Hyperledger/crypto-config/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/Build-Multi-Host-Network-Hyperledger/crypto-config/
+
+Hyperledger Fabric on Multiple Hosts using Docker Swarm and Compose
+VM1
+scp -r qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/fabric-multi-network/crypto-config/. D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/crypto-config/
+scp -r qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/fabric-multi-network/channel-artifacts/. D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/channel-artifacts/
+scp -r qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/fabric-multi-network/. D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/bymn.sh qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/fabric-multi-network/bymn.sh
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/docker-compose-orderer.yaml qrpdevmachine3@13.76.156.155:/home/qrpdevmachine3/fabric-samples/fabric-multi-network/docker-compose-orderer.yaml
+
+VM2
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/channel-artifacts/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/fabric-samples/fabric-multi-network/channel-artifacts/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/crypto-config/. qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/fabric-samples/fabric-multi-network/crypto-config/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/docker-compose-org1.yaml qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/fabric-samples/fabric-multi-network/docker-compose-org1.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/bymn.sh qrpubuntuvm1@52.163.185.40:/home/qrpubuntuvm1/fabric-samples/fabric-multi-network/bymn.sh
+docker swarm join --token SWMTKN-1-5y9lrpg96veuq0r5ylrbf841epheir8udleac28nagroiw5r4l-cq71lnp6kuqqd3iww3nmvfuyx 172.16.1.5:2377 --advertise-addr 172.16.1.7
+
+VM3
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/channel-artifacts/. qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/fabric-samples/fabric-multi-network/channel-artifacts/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/crypto-config/. qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/fabric-samples/fabric-multi-network/crypto-config/
+scp -r D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/docker-compose-org2.yaml qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/fabric-samples/fabric-multi-network/docker-compose-org2.yaml
+scp D:/Jeson/Projects/Development/QRNeo/MultiOrg/Hyperledger-Fabric-on-Multiple-Hosts-using-Docker-Swarm-and-Compose/fabric-multi-network/bymn.sh qrpubuntuvm2@13.67.32.115:/home/qrpubuntuvm2/fabric-samples/fabric-multi-network/bymn.sh
+docker swarm join --token SWMTKN-1-5y9lrpg96veuq0r5ylrbf841epheir8udleac28nagroiw5r4l-cq71lnp6kuqqd3iww3nmvfuyx 172.16.1.5:2377 --advertise-addr 172.16.1.8
+
+
+
+
+
+
